@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 
-function MenuItem() {
+function MenuItem(props) {
   return (
-    <span className="nav-link" > MenuItem </span>
+    <li className="nav-item">
+      <a className="nav-link" href={props.menuItem.link}> {props.menuItem.text}</a>
+    </li>
   );
 }
 

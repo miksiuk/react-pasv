@@ -3,14 +3,12 @@ import './App.css';
 import MenuItem from './MenuItem'
 
 
-function Menu() {
+function Menu(props) {
+
   return (
     <nav>
       <ul className="navbar-nav">
-        <li className="nav-item"><MenuItem /></li>
-        <li className="nav-item"><MenuItem /></li>
-        <li className="nav-item"><MenuItem /></li>
-        <li className="nav-item"><MenuItem /></li>
+        {props.menuItems.map(el => <MenuItem key={el.text} menuItem={el} />)}
       </ul>
     </nav>
   );
