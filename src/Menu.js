@@ -5,14 +5,14 @@ import MenuItem from './MenuItem'
 
 function Menu() {
   return (
-    <div>
+    <nav>
       <ul className="navbar-nav">
         <li className="nav-item"><MenuItem /></li>
         <li className="nav-item"><MenuItem /></li>
         <li className="nav-item"><MenuItem /></li>
         <li className="nav-item"><MenuItem /></li>
       </ul>
-    </div>
+    </nav>
   );
 }
 

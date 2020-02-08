@@ -6,7 +6,7 @@ import Content from './Content';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App container-xl">
       <Header />
       <Content />
       <Footer />

@@ -3,9 +3,9 @@ import './App.css';
 
 function Content() {
   return (
-    <div>
+    <main className="p-3 border">
       Content
-    </div>
+    </main>
   );
 }
 
