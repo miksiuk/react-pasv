@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/miks-react-pasv/static/css/main.d1b05096.chunk.css",
+    "main.js": "/miks-react-pasv/static/js/main.f5bdf14f.chunk.js",
+    "main.js.map": "/miks-react-pasv/static/js/main.f5bdf14f.chunk.js.map",
+    "runtime-main.js": "/miks-react-pasv/static/js/runtime-main.a6eba698.js",
+    "runtime-main.js.map": "/miks-react-pasv/static/js/runtime-main.a6eba698.js.map",
+    "static/css/2.67123b20.chunk.css": "/miks-react-pasv/static/css/2.67123b20.chunk.css",
+    "static/js/2.5af52860.chunk.js": "/miks-react-pasv/static/js/2.5af52860.chunk.js",
+    "static/js/2.5af52860.chunk.js.map": "/miks-react-pasv/static/js/2.5af52860.chunk.js.map",
+    "index.html": "/miks-react-pasv/index.html",
+    "precache-manifest.dffb2b0cd02d68c1a8cca7a61adda18c.js": "/miks-react-pasv/precache-manifest.dffb2b0cd02d68c1a8cca7a61adda18c.js",
+    "service-worker.js": "/miks-react-pasv/service-worker.js",
+    "static/css/2.67123b20.chunk.css.map": "/miks-react-pasv/static/css/2.67123b20.chunk.css.map",
+    "static/css/main.d1b05096.chunk.css.map": "/miks-react-pasv/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.5af52860.chunk.js.LICENSE.txt": "/miks-react-pasv/static/js/2.5af52860.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a6eba698.js",
+    "static/css/2.67123b20.chunk.css",
+    "static/js/2.5af52860.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.f5bdf14f.chunk.js"
+  ]
+}
