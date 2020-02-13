@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 function Content() {
 
@@ -12,7 +11,7 @@ function Content() {
   }
 
   return (
-    <main className="p-3 border">
+    <main>
       <h1>
         Content
       </h1>
