@@ -75,7 +75,7 @@ function App() {
       newCounters.splice(newCounters.findIndex(el => el.key === key), 1, { key: key, name: name, value: value });
     }
     setCounters(newCounters);
-    setTotal(counters.reduce(((a, b) => a + b.value), 0));
+    setTotal(newCounters.reduce(((a, b) => a + b.value), 0));
   }
 
   return (
