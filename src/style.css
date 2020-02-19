@@ -32,9 +32,9 @@ header {
 
 footer {
     background-color: #333;
-    height: 200px;
+    height: 150px;
     color: white;
-    position: absolute;
+    position: relative;
     right: 0;
     bottom: 0;
     left: 0;
@@ -48,13 +48,12 @@ footer {
 }
 
 main {
-    padding: 100px 100px 100px 100px;
+    padding: 50px 50px 50px 50px;
 }
 
 .footer-menu li a {
     color: #f2f2f2;
     text-align: center;
-    padding: 16px 16px 16px 16px;
     text-decoration: none;
     font-size: 17px;
 }
@@ -64,8 +63,12 @@ main {
 }
 
 .footer-text {
-    padding: 20px 100px 0px 0px;
+    padding: 20px 50px 0px 0px;
     float: right;
+}
+
+.text-center {
+    text-align: "center";
 }
 
 footer .logo {

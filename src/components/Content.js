@@ -1,17 +1,19 @@
 import React from 'react';
 
-function Content() {
+function Content(props) {
+
+  let name = 'Initial';
 
   const clickButtonHandler = (value) => {
-    console.log('CLicked! ' + value)
+    props.bc(name + ' ' + value);
   }
 
   const inputHandler = (e) => {
-    console.log(e.target.value)
+    name = e.target.value;
   }
 
   return (
-    <main>
+    <main className="text-center">
       <h1>
         Content
       </h1>
