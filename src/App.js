@@ -66,7 +66,11 @@ function App() {
   const update = (key, name, value) => {
     let newCounters = counters;
     if (value === undefined) {
-      newCounters.splice(newCounters.findIndex(el => el.key === key), 1);
+      if (newCounters.length === 1) {
+        newCounters = [];
+      } else {
+        newCounters.splice(newCounters.findIndex(el => el.key === key), 1);
+      }
     } else {
       newCounters.splice(newCounters.findIndex(el => el.key === key), 1, { key: key, name: name, value: value });
     }
