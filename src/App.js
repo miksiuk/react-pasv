@@ -6,6 +6,7 @@ import Counter from './components/Counter';
 import AddCounter from './components/AddCounter'
 import Total from './components/TotalCount';
 import Modal from './components/modal/Modal';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   const initial = [{
