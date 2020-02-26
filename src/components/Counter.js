@@ -14,10 +14,6 @@ function State(props) {
     props.update(props.counter.key, props.counter.name, 0);
   };
 
-  const del = () => {
-    props.update(props.counter.key, props.counter.name);
-  };
-
   return (
     <div className="text-center">
       <hr />
@@ -26,7 +22,7 @@ function State(props) {
       {props.counter.value}
       <button onClick={countChangePlusHandler}>+</button>
       <button onClick={res}>Reset</button>
-      <button onClick={del}>Delete</button>
+      <button onClick={() => props.openModal(props.counter)}>Delete</button>
 
     </div>
   )

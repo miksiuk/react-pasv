@@ -2,24 +2,19 @@ import React, { useState } from 'react';
 
 function State(props) {
   const [counterName, setName] = useState();
-  const [initialValue, setInitialValue] = useState();
+  const [value, setValue] = useState();
 
-  const addCounter = () => {
-    if (counterName !== '' && initialValue !== '') {
-      props.setCounters(prev => prev.concat([{ key: prev.length + 1, name: counterName, value: +initialValue }]));
-      props.setTotal(prev => prev + (+initialValue));
-      document.getElementById('nameCounter').value = '';
-      document.getElementById('initialValue').value = '';
-      setName('');
-      setInitialValue('');
-    }
+  const onSubmit = (counterName, initialValue) => {
+    props.addCounter(counterName, initialValue);
+    setName('');
+    setValue('');
   }
 
   return (
     <>
-      <input id="nameCounter" onChange={e => setName(e.target.value)} /> Name of counter
-      <input id="initialValue" onChange={e => setInitialValue(e.target.value)} /> Initial value
-      <button id="add" onClick={() => addCounter()}>Add Counter</button>
+      <input id="nameCounter" value={counterName} onChange={e => setName(e.target.value)} /> Name of counter
+      <input id="initialValue" value={value} onChange={e => setValue(e.target.value)} /> Initial value
+      <button id="add" onClick={() => onSubmit(counterName, value)}>Add Counter</button>
     </>
   )
 }
