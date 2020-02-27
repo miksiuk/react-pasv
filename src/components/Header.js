@@ -5,7 +5,11 @@ import Menu from './MenuHeader';
 function Header(props) {
 
   return (
-    <header> <Logo /> <Menu menuItems={props.items} /> </header>
+    <header>
+      <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-secondary">
+        <Logo /> <Menu menuItems={props.items} />
+      </nav>
+    </header>
   );
 }
 

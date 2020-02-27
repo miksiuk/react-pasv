@@ -1,15 +1,15 @@
 import React from 'react';
-import MenuItem from './MenuItem'
+import MenuItem from './MenuItemHeader'
 
 
 function Menu(props) {
 
     return (
-        <nav>
-            <ul className="header-menu" >
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto" >
                 {props.menuItems.map(el => < MenuItem key={el.text} menuItem={el} />)}
             </ul>
-        </nav>
+        </div>
     );
 }
 

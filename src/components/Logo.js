@@ -2,11 +2,12 @@ import React from 'react';
 import logo from './../logo192.png'
 
 function Logo() {
-    return (<
-        img src={logo}
-        className="logo"
-        alt="Logo"
-        align="left" />
+    return (
+        <img src={logo}
+            width="40"
+            heigth="40"
+            alt="Logo"
+            className="rounded" />
     );
 }
 

@@ -5,8 +5,7 @@ import Footer from './components/Footer';
 import Counter from './components/Counter';
 import AddCounter from './components/AddCounter'
 import Total from './components/TotalCount';
-import Modal from './components/modal/Modal';
-import 'bootstrap/dist/css/bootstrap.css';
+import ModalDeleteConfirm from './components/modal/Modal';
 
 function App() {
   const initial = [{
@@ -22,17 +21,17 @@ function App() {
 
   const [counters, setCounters] = useState(initial);
   const [totalValue, setTotal] = useState(counters.reduce(((a, b) => a + b.value), 0));
-  const [showModal, setShowModal] = useState(false);
-  const [modalCounter, setModalCounter] = useState();
+  const [isOpenModalDeleteConfirm, setIsOpenModalDeleteConfirm] = useState(false);
+  const [modalCounter, setModalCounter] = useState('');
 
   const openModal = (el) => {
-    setShowModal(true);
+    setIsOpenModalDeleteConfirm(true);
     setModalCounter(el);
   }
 
   const closeModal = () => {
-    setShowModal(false);
-    setModalCounter(undefined);
+    setIsOpenModalDeleteConfirm(false);
+    setModalCounter('');
   }
 
 
@@ -70,7 +69,7 @@ function App() {
     link: "bla4",
   }];
 
-  const footerText = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ";
+  const footerText = "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.";
 
   // const [totalCount1, setTotalCount1] = useState(3);
   // const [totalCount2, setTotalCount2] = useState(3);
@@ -104,7 +103,6 @@ function App() {
   return (
     <div className="App container-xl text-center">
       <Header items={HeaderItems} />
-      <Modal show={showModal} closeModal={closeModal} update={update} counter={modalCounter} />
       <Total totalValue={totalValue} update={update} counters={counters} />
       {counters.map((el) => {
         return (<>
@@ -113,6 +111,7 @@ function App() {
       })}
       <AddCounter addCounter={addCounter} />
       <Footer menu1={HeaderItems} menu2={footersItems} text={footerText} />
+      <ModalDeleteConfirm show={isOpenModalDeleteConfirm} closeModal={closeModal} update={update} counter={modalCounter} />
     </div >
   );
 }
