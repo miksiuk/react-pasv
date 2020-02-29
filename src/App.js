@@ -101,15 +101,18 @@ function App() {
   }
 
   return (
-    <div className="App container-xl text-center">
+    <div className="text-center">
       <Header items={HeaderItems} />
-      <Total totalValue={totalValue} update={update} counters={counters} />
-      {counters.map((el) => {
-        return (<>
-          <Counter key={el.key} counter={el} update={update} openModal={openModal} />
-        </>)
-      })}
-      <AddCounter addCounter={addCounter} />
+      <div className="container">
+        <Total totalValue={totalValue} update={update} counters={counters} setCounters={setCounters} setTotal={setTotal} />
+        <div className="row text-left h3 pt-3"> Counters</div>
+        {counters.map((el) => {
+          return (<>
+            <Counter key={el.key} counter={el} update={update} openModal={openModal} />
+          </>)
+        })}
+        <AddCounter addCounter={addCounter} />
+      </div>
       <Footer menu1={HeaderItems} menu2={footersItems} text={footerText} />
       <ModalDeleteConfirm show={isOpenModalDeleteConfirm} closeModal={closeModal} update={update} counter={modalCounter} />
     </div >

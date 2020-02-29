@@ -15,15 +15,19 @@ function State(props) {
   };
 
   return (
-    <div className="text-center">
-      <hr />
-      <p>{props.counter.name}</p>
-      <button onClick={countChangeMinusHandler}>-</button>
-      {props.counter.value}
-      <button onClick={countChangePlusHandler}>+</button>
-      <button onClick={res}>Reset</button>
-      <button onClick={() => props.openModal(props.counter)}>Delete</button>
-
+    <div className="card mt-2 mb-2">
+      <div className="card-body row pt-1 pb-1 ml-3 mr-3">
+        <div className="col-lg-2">{props.counter.name}</div>
+        <div className="col-2">
+          <button onClick={countChangeMinusHandler}>-</button>
+          {props.counter.value}
+          <button onClick={countChangePlusHandler}>+</button>
+        </div>
+        <div className="col-2">
+          <button onClick={res}>Reset</button>
+          <button onClick={() => props.openModal(props.counter)}>Delete</button>
+        </div>
+      </div>
     </div>
   )
 }
