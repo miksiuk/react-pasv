@@ -1,12 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { updateCounters } from '../actions'
+
 
 function State(props) {
 
   const res = () => {
     let newCounters = props.counters;
     newCounters = newCounters.map(el => { return { ...el, value: 0 } })
-    props.setCounters(newCounters);
-    props.setTotal(newCounters.reduce(((a, b) => a + b.value), 0));
+    props.updateCounters(newCounters);
   }
 
   return (
@@ -17,4 +19,14 @@ function State(props) {
     </div>
   )
 }
-export default State;
+
+const mapStateToProps = state => ({
+  totalValue: state.counters.reduce((a, b) => a + b.value, 0),
+  counters: state.counters
+})
+
+const mapDispatchToProps = dispatch => ({
+  updateCounters: args => dispatch(updateCounters(args)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(State);

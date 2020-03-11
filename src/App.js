@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 // import Content from './Content';
@@ -6,34 +6,10 @@ import Counter from './components/Counter';
 import AddCounter from './components/AddCounter'
 import Total from './components/TotalCount';
 import ModalDeleteConfirm from './components/modal/Modal';
+import { connect } from 'react-redux'
 
-function App() {
-  const initial = [{
-    key: 1,
-    name: 'Counter1',
-    value: 3
-  },
-  {
-    key: 2,
-    name: 'Counter2',
-    value: 3
-  }];
 
-  const [counters, setCounters] = useState(initial);
-  const [totalValue, setTotal] = useState(counters.reduce(((a, b) => a + b.value), 0));
-  const [isOpenModalDeleteConfirm, setIsOpenModalDeleteConfirm] = useState(false);
-  const [modalCounter, setModalCounter] = useState('');
-
-  const openModal = (el) => {
-    setIsOpenModalDeleteConfirm(true);
-    setModalCounter(el);
-  }
-
-  const closeModal = () => {
-    setIsOpenModalDeleteConfirm(false);
-    setModalCounter('');
-  }
-
+function App(props) {
 
   const HeaderItems = [{
     text: "Home",
@@ -71,52 +47,34 @@ function App() {
 
   const footerText = "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.";
 
-  // const [totalCount1, setTotalCount1] = useState(3);
-  // const [totalCount2, setTotalCount2] = useState(3);
-
-  // const countChange = (v) => {
-  //   setCounters({ value: v });
-  // }
-  const update = (key, name, value) => {
-    let newCounters = [...counters];
-    if (value === undefined) {
-      if (newCounters.length === 1) {
-        newCounters = [];
-      } else {
-        newCounters = newCounters.filter(el => el.key !== key && el.name !== name);
-      }
-    } else {
-      newCounters = newCounters.map(el => el.key === key && el.name === name ? { ...el, value: value } : el);
-    }
-    setCounters(newCounters);
-    setTotal(newCounters.reduce(((a, b) => a + b.value), 0));
-  }
-
-  const addCounter = (counterName, initialValue) => {
-    if (counterName !== '' && initialValue !== '') {
-      let newCounters = [...counters, { key: counters.length + 1, name: counterName, value: +initialValue }]
-      setCounters(newCounters);
-      setTotal(newCounters.reduce((a, b) => a + b.value, 0));
-    }
-  }
-
   return (
     <div className="text-center">
       <Header items={HeaderItems} />
       <div className="container">
-        <Total totalValue={totalValue} update={update} counters={counters} setCounters={setCounters} setTotal={setTotal} />
+        <Total />
         <div className="row text-left h3 pt-3"> Counters</div>
-        {counters.map((el) => {
+        {props.counters.map((el) => {
           return (<>
-            <Counter key={el.key} counter={el} update={update} openModal={openModal} />
+            <Counter key={el.key} currentCounter={el} />
           </>)
         })}
-        <AddCounter addCounter={addCounter} />
+        <AddCounter />
       </div>
       <Footer menu1={HeaderItems} menu2={footersItems} text={footerText} />
-      <ModalDeleteConfirm show={isOpenModalDeleteConfirm} closeModal={closeModal} update={update} counter={modalCounter} />
+      <ModalDeleteConfirm show={props.isOpenModal} counter={props.counterForDelete} />
     </div >
   );
 }
 
-export default App;
+
+const mapStateToProps = state => ({
+  counters: state.counters,
+  isOpenModal: state.isOpenModal,
+  counterForDelete: state.counterForDelete,
+})
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

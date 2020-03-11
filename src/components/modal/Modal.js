@@ -1,32 +1,24 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-
+import { connect } from 'react-redux';
+import { closeModal, updateCounters } from '../../actions'
 
 
 function State(props) {
 
     const [name, setName] = useState();
-    const [isDisabledDel, setIsDisabledDel] = useState(true);
 
     const del = () => {
-        if (props.counter.name === name) {
+        if (props.counterForDelete.name === name) {
             setName('');
             props.closeModal();
-            props.update(props.counter.key, props.counter.name);
-            setIsDisabledDel(true)
+            let newCounters = props.counters.filter(el => el.key !== props.counterForDelete.key);
+            props.updateCounters(newCounters);
+            props.closeModal();
         } else {
             setName('');
         }
     };
-
-    const checkRemove = (e) => {
-        setName(e);
-        if (props.counter.name === e) {
-            setIsDisabledDel(false)
-        } else {
-            setIsDisabledDel(true)
-        }
-    }
 
 
     return (
@@ -37,11 +29,11 @@ function State(props) {
                 <Modal.Title>Delete Confirmation</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div>Enter <strong>"{props.counter.name}"</strong> to remove counter</div>
-                <input type="text" class="form-control" id="nameCounter" value={name} onChange={(e) => checkRemove(e.target.value)} />
+                <div>Enter <strong>"{props.counterForDelete.name}"</strong> to remove counter</div>
+                <input type="text" class="form-control" id="nameCounter" value={name} onChange={(e) => setName(e.target.value)} />
             </Modal.Body>
             <Modal.Footer>
-                <button className="btn btn-danger" disabled={isDisabledDel} onClick={() => del()}>
+                <button className="btn btn-danger" disabled={props.counterForDelete.name !== name} onClick={() => del()}>
                     Delete
           </button>
                 <button className="btn btn-secondary" onClick={() => props.closeModal()}>
@@ -53,4 +45,15 @@ function State(props) {
         </Modal>
     )
 }
-export default State;
+
+const mapStateToProps = state => ({
+    counters: state.counters,
+    counterForDelete: state.counterForDelete,
+})
+
+const mapDispatchToProps = dispatch => ({
+    closeModal: () => dispatch(closeModal()),
+    updateCounters: args => dispatch(updateCounters(args)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(State);

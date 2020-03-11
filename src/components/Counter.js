@@ -1,34 +1,49 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { updateCounters, openModal } from '../actions'
 
 function State(props) {
 
   const countChangePlusHandler = () => {
-    props.update(props.counter.key, props.counter.name, props.counter.value + 1);
+    let newCounters = props.counters.map(el => el.key === props.currentCounter.key ? { ...el, value: el.value + 1 } : el);
+    props.updateCounters(newCounters);
   }
 
   const countChangeMinusHandler = () => {
-    props.update(props.counter.key, props.counter.name, props.counter.value - 1);
+    let newCounters = props.counters.map(el => el.key === props.currentCounter.key ? { ...el, value: el.value - 1 } : el);
+    props.updateCounters(newCounters);
   }
 
   const res = () => {
-    props.update(props.counter.key, props.counter.name, 0);
+    let newCounters = props.counters.map(el => el.key === props.currentCounter.key ? { ...el, value: 0 } : el);
+    props.updateCounters(newCounters);
   };
 
   return (
     <div className="card mt-2 mb-2">
       <div className="card-body row pt-1 pb-1 ml-3 mr-3">
-        <div className="col-lg-2">{props.counter.name}</div>
-        <div className="col-2">
-          <button onClick={countChangeMinusHandler}>-</button>
-          {props.counter.value}
-          <button onClick={countChangePlusHandler}>+</button>
+        <div className="col-lg-2">{props.currentCounter.name}</div>
+        <div className="col-2 row">
+          <button className="btn btn-outline-success ml-2 mr-2 pl-2 pr-2" onClick={countChangeMinusHandler}>-</button>
+          <div className="bg-light pl-2 pr-2 mt-1 mb-1"> {props.currentCounter.value}</div>
+          <button className="btn btn-outline-success ml-2 mr-2 pl-2 pr-2" onClick={countChangePlusHandler}>+</button>
         </div>
         <div className="col-2">
           <button onClick={res}>Reset</button>
-          <button onClick={() => props.openModal(props.counter)}>Delete</button>
+          <button onClick={() => props.openModal(props.currentCounter)}>Delete</button>
         </div>
       </div>
     </div>
   )
 }
-export default State;
+
+const mapStateToProps = state => ({
+  counters: state.counters,
+})
+
+const mapDispatchToProps = dispatch => ({
+  updateCounters: args => dispatch(updateCounters(args)),
+  openModal: args => dispatch(openModal(args)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(State);

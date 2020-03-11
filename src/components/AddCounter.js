@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux'
+import { updateCounters } from '../actions'
 
 function State(props) {
+
   const [counterName, setName] = useState();
   const [value, setValue] = useState();
 
   const onSubmit = (counterName, initialValue) => {
-    props.addCounter(counterName, initialValue);
-    setName('');
-    setValue('');
+    if (counterName !== '' && initialValue !== '') {
+      let newCounters = [...props.counters, { key: props.counters.length + 1, name: counterName, value: +initialValue }]
+      props.updateCounters(newCounters);
+      setName('');
+      setValue('');
+    }
   }
 
   return (
@@ -18,4 +24,13 @@ function State(props) {
     </>
   )
 }
-export default State;
+
+const mapStateToProps = state => ({
+  counters: state.counters
+})
+
+const mapDispatchToProps = dispatch => ({
+  updateCounters: args => dispatch(updateCounters(args)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(State);

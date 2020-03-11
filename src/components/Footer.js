@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from './Logo';
 import Menu from './MenuFooter'
+import { connect } from 'react-redux'
 
 function Footer(props) {
   return (
@@ -17,4 +18,10 @@ function Footer(props) {
   );
 }
 
-export default Footer;
+const mapStateToProps = state => ({
+  menu1: state.headerItems,
+  menu2: state.footersItems,
+  text: state.footerText
+})
+
+export default connect(mapStateToProps)(Footer);
